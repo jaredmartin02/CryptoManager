@@ -8,7 +8,7 @@ from priceHistory import Prices
 #test
 
 path = os.path.join('data', 'history.csv')
-#test
+
 def plotBacktest(data, title, buys, sells, save):
     df = pd.DataFrame(data, columns=['open', 'high', 'low', 'close', 'volume'])
     width1, width2 = 0.9, 0.1
