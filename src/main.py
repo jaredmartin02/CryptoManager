@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from priceHistory import Prices
 
+#test
+
 path = os.path.join('data', 'history.csv')
 #test
 def plotBacktest(data, title, buys, sells, save):
