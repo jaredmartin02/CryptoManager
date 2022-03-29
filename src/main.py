@@ -4,6 +4,7 @@ import ccxt
 import matplotlib.pyplot as plt
 import pandas as pd
 from priceHistory import Prices
+from strategy import Strategy
 
 #test
 
@@ -75,5 +76,6 @@ if __name__ == '__main__':
     portfolio = Portfolio
     exchange = Exchange(portfolio, 0.5)
     prices = Prices(5)
-    data = prices.getCoinData('ADA', '1h')
-    plotBacktest(data, 'ADA15m', [6, 140, 380], [50, 180, 290], True)
+    strategy = Strategy(prices, exchange)
+    data = prices.getCoinData('BTC', '1h')
+    print(strategy.stochRsi(data)[0])

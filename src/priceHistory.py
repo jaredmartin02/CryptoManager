@@ -98,12 +98,22 @@ class Prices:
         if '15m' not in data[self.symbols[0]]:
             print('Not all prices could not be updated, there is a gap between historic data and current data')
         elif write == True:
-            Prices.writeFile(filePath, data)
+            self.writeFile(filePath, data)
             print('New file written')
+            print('length of 1 Day history:', len(self.readFile(filePath)['BTC']['1d']))
+            print('length of 4 Hour history:', len(self.readFile(filePath)['BTC']['4h']))
+            print('length of 1 Hour history:', len(self.readFile(filePath)['BTC']['1h']))
+            print('length of 30 Minute history:', len(self.readFile(filePath)['BTC']['30m']))
+            print('length of 15 Minute history:', len(self.readFile(filePath)['BTC']['15m']))
         return data
 
 
 if __name__ == '__main__':
     prices = Prices(5)
     fileName = os.path.join('data', 'test.csv')
-    #prices.updateFile('test.csv', True)
+    #prices.updateFile(fileName, True)
+    #prices.writeFile(fileName, prices.getFullData())
+    os.chdir('data')
+    print(os.listdir())
+    os.system('git commit -am "updating price history"')
+    os.system('git push origin main')
