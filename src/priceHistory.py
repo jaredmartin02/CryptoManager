@@ -118,4 +118,5 @@ if __name__ == '__main__':
         prices.updateFile('test.csv', True)
         os.system('git commit -am "updating price history"')
         os.system('git push origin main')
-        time.sleep(30)
+        #time.sleep(86400)
+        time.sleep(60)

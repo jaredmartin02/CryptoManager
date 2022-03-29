@@ -75,7 +75,8 @@ class Exchange:
 if __name__ == '__main__':
     portfolio = Portfolio
     exchange = Exchange(portfolio, 0.5)
-    prices = Prices(5)
+    prices = Prices()
     strategy = Strategy(prices, exchange)
     data = prices.getCoinData('BTC', '1h')
     print(strategy.stochRsi(data)[0])
+    47594.86
