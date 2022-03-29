@@ -1,6 +1,7 @@
 import csv
 import ccxt
 import os
+import time
 binance = ccxt.binanceus()
 binance.apiKey = 'trVh9Yk1Brx9FA6cAbYw1nBeS4KWpDxMR1lZtmVlcesta2wjZw4eovlTjBsulCEr'
 binance.secret = 'BC3gKZaBLTNcVouDCYuXKQaS19wZ1tfsLjR8QSEz9vRaI9KL0e3uYTto9UBW6Hst'
@@ -15,8 +16,8 @@ class Prices:
                'DASH', 'CTSI', 'ONT', 'PAXG']
     timeFrames = ['1d', '4h', '1h', '30m', '15m']
 
-    def __init__(self, value):
-        self.value = value
+    def __init__(self):
+        pass
 
     def getCoinData(self, coin, timeframe):
         data = []
@@ -109,11 +110,12 @@ class Prices:
 
 
 if __name__ == '__main__':
-    prices = Prices(5)
+    prices = Prices()
     fileName = os.path.join('data', 'test.csv')
-    #prices.updateFile(fileName, True)
     #prices.writeFile(fileName, prices.getFullData())
     os.chdir('data')
-    print(os.listdir())
-    os.system('git commit -am "updating price history"')
-    os.system('git push origin main')
+    while True:
+        prices.updateFile('test.csv', True)
+        os.system('git commit -am "updating price history"')
+        os.system('git push origin main')
+        time.sleep(30)
