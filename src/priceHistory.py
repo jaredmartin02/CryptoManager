@@ -58,13 +58,13 @@ class Prices:
         currentS = 0
         for k in self.symbols:
             data[k] = {}
-        with open(filePath) as file:
+        with open(filePath, 'r') as file:
             lines = csv.reader(file)
             for line in lines:
                 rawData.append(line)
             for i in range(len(rawData)):
                 if rawData[i][0] == self.symbols[currentS]:
-                    start = i+1
+                    start = i+2
                 if rawData[i][0] == '4h':
                     data[self.symbols[currentS]]['1d'] = rawData[start+1:i]
                     start = i
@@ -91,6 +91,7 @@ class Prices:
             data[k] = {}
         readData = self.readFile(filePath)
         newData = self.getFullData()
+        print(len(readData['BTC']['1d']))
         for s in self.symbols:
             for t in self.timeFrames:
                 for i in readData[s][t]:
@@ -111,12 +112,18 @@ class Prices:
 
 if __name__ == '__main__':
     prices = Prices()
-    fileName = os.path.join('data', 'test.csv')
+    fileName = os.path.join('../data', 'test.csv')
     #prices.writeFile(fileName, prices.getFullData())
-    os.chdir('data')
-    while True:
-        prices.updateFile('test.csv', True)
-        os.system('git commit -am "updating price history"')
-        os.system('git push origin main')
+    os.chdir('../data')
+
+    prices.updateFile('test.csv', True)
+    # prices.updateFile('test.csv', True)
+    #print(prices.readFile('test.csv')['ETH']['15m'][-1])
+
+    #while True:
+        #pass
+        #prices.updateFile('test.csv', True)
+        #os.system('git commit -am "updating price history"')
+        #os.system('git push origin main')
         #time.sleep(86400)
-        time.sleep(60)
+        #time.sleep(60)

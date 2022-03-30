@@ -8,7 +8,7 @@ from strategy import Strategy
 
 #test
 
-path = os.path.join('data', 'history.csv')
+path = os.path.join('../data', 'history.csv')
 
 def plotBacktest(data, title, buys, sells, save):
     df = pd.DataFrame(data, columns=['open', 'high', 'low', 'close', 'volume'])
@@ -79,4 +79,3 @@ if __name__ == '__main__':
     strategy = Strategy(prices, exchange)
     data = prices.getCoinData('BTC', '1h')
     print(strategy.stochRsi(data)[0])
-    47594.86
